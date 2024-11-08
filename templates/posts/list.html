@@ -7,8 +7,16 @@
 
 {% block content %}
 <h1>Posts</h1>
-<h3>{{ post.subtitle}}</h3>
-<small>Created on: {{ post.created_on}}</small>
-<p>{{ post.body}}</p>
+{% for post in post_list %}
 
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{ post.title }}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">{{ post.subtitle}}</h6>
+      <small>Created on: {{ post.created_on}}</small>
+      <p class="card-text">{{ post.body|truncatechars:128 }}</p>
+      <a href="{% url 'detail' post.id %}" class="card-link">Continue reading...</a>
+    </div>
+  </div>
+{% endfor %}
 {% endblock content %}
